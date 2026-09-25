@@ -16,10 +16,8 @@ public class WallCollider : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        Debug.Log("HI");
         if (collision.gameObject.tag == "Cube")
         {
-            Debug.Log("HI2");
             Mover cube = FindAnyObjectByType<Mover>();
             cube.ChangeDirection();
         }

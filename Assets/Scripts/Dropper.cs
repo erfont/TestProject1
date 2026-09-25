@@ -21,7 +21,6 @@ public class Dropper : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(message: Time.time - startTime);
         if (Time.time - startTime > 3) 
         {
             myRigidBody.useGravity = true;
