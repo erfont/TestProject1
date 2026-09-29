@@ -28,8 +28,8 @@ public class PlayerInputController : MonoBehaviour
         {
             Debug.Log("Jumping!");
             rb.AddRelativeForce(Vector3.up * ThrustForce * Time.fixedDeltaTime);
-            StartCoroutine(WaitCoroutine(1f));
-           
+            //StartCoroutine(WaitCoroutine(0.2f));
+           jump = false;
         }
 
         Move();
