@@ -2,26 +2,35 @@ using UnityEngine;
 
 public class Mover : MonoBehaviour
 {
-    [SerializeField] [Range(0f, 1f)] float X;
-    [SerializeField] [Range(0f, 1f)]float Y, Z;
-    [SerializeField] private int direction;
-    [SerializeField] [Range(0f, 5f)] float speed; 
+    public Vector3 directionVector;
+    [SerializeField][Range(0f, 5f)] float speed;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        direction = 1;
-        
+        directionVector = new Vector3(1, 0, 0);
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(X * direction * speed * Time.deltaTime, Y * Time.deltaTime * speed, Z * Time.deltaTime * speed);
+        transform.Translate(directionVector.x * speed * Time.deltaTime, directionVector.y * speed * Time.deltaTime, directionVector.z * speed * Time.deltaTime);
     }
 
-    public void ChangeDirection()
+    public void ChangeDirection(Vector3 direction)
     {
-        this.direction *= -1;
+        this.directionVector = direction;
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        Vector3 direction = collision.GetContact(0).normal;
+        Debug.Log(direction);
+
+        if (collision.gameObject.tag == "Wall")
+        {
+            this.ChangeDirection(direction);
+        }
     }
 }

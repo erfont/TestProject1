@@ -16,10 +16,11 @@ public class WallCollider : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
+
         if (collision.gameObject.tag == "Cube")
         {
             Mover cube = FindAnyObjectByType<Mover>();
-            cube.ChangeDirection();
+           // cube.ChangeDirection();
         }
     }
 }
