@@ -1,8 +1,6 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Rendering;
-
 
 public class PlayerInputController : MonoBehaviour
 {
@@ -11,7 +9,7 @@ public class PlayerInputController : MonoBehaviour
     public bool jump;
     Rigidbody rb;
     public float ThrustForce = 2500;
-    private float directionX, directionZ;
+    public float directionX, directionZ;
     [SerializeField] [Range(0f, 5f)] float speed; 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -24,16 +22,20 @@ public class PlayerInputController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (jump) 
+        if (jump)
         {
-            Debug.Log("Jumping!");
-            rb.AddRelativeForce(Vector3.up * ThrustForce * Time.fixedDeltaTime);
-            //StartCoroutine(WaitCoroutine(0.2f));
-           jump = false;
+            Jump();
         }
 
         Move();
         
+    }
+
+    private void Jump()
+    {
+        Debug.Log("Jumping!");
+        rb.AddRelativeForce(Vector3.up * ThrustForce * Time.fixedDeltaTime);
+        jump = false;
     }
 
     private void Move()
